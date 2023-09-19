@@ -22,7 +22,7 @@ st.markdown("""
 
 heading1 = st.expander("Introduction", expanded=False)
 with heading1:
-    st.markdown("Welcome to the official documentation for the ACW Automation Suite, a cutting-edge software solution crafted to streamline After Call Work (ACW) processes within contact centers. ACW plays a pivotal role in contact center operations, involving the systematic recording of vital customer interaction data after each call. This documentation serves as your comprehensive guide to unlock the full potential of the ACW Automation Suite, offering enhanced efficiency, improved productivity, and elevated customer service standards.", unsafe_allow_html=True)
+  st.markdown("Welcome to the official documentation for the ACW Automation Suite, a cutting-edge software solution crafted to streamline After Call Work (ACW) processes within contact centers. ACW plays a pivotal role in contact center operations, involving the systematic recording of vital customer interaction data after each call. This documentation serves as your comprehensive guide to unlock the full potential of the ACW Automation Suite, offering enhanced efficiency, improved productivity, and elevated customer service standards.", unsafe_allow_html=True)
 
 heading2 = st.expander("Improving the ACW Process", expanded=False)
 with heading2:
@@ -69,6 +69,22 @@ with heading4:
   st.markdown("- The Cloud function detects a new object upload event on GCP cloud storage. And then triggers REST API of Orchestrator running on Cloud Run.", unsafe_allow_html=True)
   st.markdown("- The Orchestrator executes series of tasks in series through pipeline designed in Springboot application and hosted on Cloud run by dockerising the Springboot application. ACW Orchestrator talks to AssemblyAI for call recording Transcription. Then uses ClarifAI’s API (internally uses Google Vertex AI - Text-Bison model) for transcription analysis on call recording.", unsafe_allow_html=True)
   st.markdown("- Finally, the sequence of pipeline tasks ends by inserting this key information to Cloud Firestone for further analysis.", unsafe_allow_html=True)
+  
+heading5 = st.expander("ACW Benefits", expanded=False)
+with heading5:
+  st.markdown("Some key benefits this solution brings in to Contact Center according to us:")
+  st.markdown("<p style='font-weight: bold'>📌 Efficiency Enhancement:</p> The ACW Automation Suite streamlines the ACW process, reducing the time agents spend on manual note-taking and data entry. This leads to a substantial increase in operational efficiency, alleviating the pain point of productivity and cost reduction.",unsafe_allow_html=True)
+  st.markdown("<p style='font-weight: bold'>📌 Data Accuracy:</p> By automating the transcription and data extraction process, the suite significantly improves the accuracy of ACW data. This ensures that vital customer interaction information is precise and reliable, mitigating the pain point of data inaccuracies.",unsafe_allow_html=True)
+  st.markdown("<p style='font-weight: bold'>📌 Advanced Analytics:</p> Leveraging AI-driven analysis, the suite provides deep insights into call recordings, including call purpose, sentiment analysis, action items, and more. This empowers contact centers to make data-driven decisions, addressing the pain point of transparency and trust.",unsafe_allow_html=True)
+  st.markdown("<p style='font-weight: bold'>📌 Privacy Compliance:</p> The ACW Automation Suite prioritizes data privacy and security. It ensures that sensitive customer data is handled with utmost care and complies with privacy regulations, addressing the pain point of ethics and privacy concerns.",unsafe_allow_html=True)
+  st.markdown("<p style='font-weight: bold'>📌 Cost Reduction:</p> By automating ACW tasks and reducing AHT, the suite indirectly leads to cost reduction. Contact centers can optimize their resources and allocate them more efficiently, mitigating the pain point of operational costs.",unsafe_allow_html=True)
+  st.markdown("<p style='font-weight: bold'>📌 Enhanced Agent Focus:</p> With the burden of manual tasks lifted, agents can focus entirely on delivering exceptional customer service and resolving queries. This helps in building trust with customers and addressing the pain point of trust and transparency.",unsafe_allow_html=True)
+  st.markdown("<p style='font-weight: bold'>📌 Scalable Solutions:</p> The ACW Automation Suite is designed to evolve and adapt to the changing needs of contact centers. It can easily accommodate additional functionalities like agent assist applications, further enhancing its value proposition.",unsafe_allow_html=True)
+  st.markdown("<p style='font-weight: bold'>📌 Improved Customer Service:</p> With agents empowered to provide quicker and more accurate responses, the quality of customer service is elevated. This contributes to higher customer satisfaction and trust in the contact center.",unsafe_allow_html=True)
+  st.markdown("<p style='font-weight: bold'>📌 Comprehensive Reporting:</p> The suite's data storage vault enables comprehensive reporting and dashboards. Contact centers can gain a holistic view of their operations, addressing the pain point of transparency and trust.",unsafe_allow_html=True)
+  st.markdown("<p style='font-weight: bold'>📌 Agent Training:</p> Valuable insights derived from call recordings can be used for advanced agent training, improving agent performance and boosting trust in agent competence.",unsafe_allow_html=True)
+  st.markdown("<br/>In Conclusion, the ACW Automation Suite offers a comprehensive solution that not only addresses the pain points associated with After Call Work but also brings significant benefits in terms of efficiency, data accuracy, privacy, cost reduction, and ethics compliance, fostering transparency and trust in contact center operations.",unsafe_allow_html=True)
+
   st.markdown('''
 <style>
 [data-testid="stMarkdownContainer"] ul{

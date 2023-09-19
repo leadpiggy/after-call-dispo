@@ -27,7 +27,7 @@ file_upload_container = st.expander("Upload an audio file to see ACW in action",
 with file_upload_container:
     uploaded_file = st.file_uploader(type=['wav', 'mp3', 'm4a', 'ogg'], label="Upload here", label_visibility="collapsed")
 
-custom_file_container = st.expander("Do not have the audio file for testing? Download one of the following sample audio files for testing", expanded=False)
+custom_file_container = st.expander("Do not have the audio file for testing? Download one of the following sample audio files for testing.*", expanded=False)
 with custom_file_container:
     # st.markdown("<br/><h6 style='text-align: left;'>Do not have the audio file for testing? Test using one of the following sample audio files</h6>", unsafe_allow_html=True)
     # positive_clicked = st.markdown("""<a href="Upload_File" target="_self">Download Positive Sentiment Audio File</a>""", unsafe_allow_html=True)
@@ -38,19 +38,23 @@ with custom_file_container:
     pos_file = open('audio/positive_sentiment.m4a', "rb") # opening for [r]eading as [b]inary
     pos_data = pos_file.read() # if you only wanted to read 512 bytes, do .read(512)
     pos_file.close()
-    dg = st.audio(pos_data, format="audio/mp4")
+    dg = st.audio(pos_data, format="audio/wav")
 
     st.markdown("Neutral Sentiment Audio File")
     neu_file = open('audio/neutral_sentiment.m4a', "rb")
     neu_data = neu_file.read()
     neu_file.close()
-    st.audio(neu_data, format="audio/mp4")
+    st.audio(neu_data, format="audio/mp3")
 
     st.markdown("Negative Sentiment Audio File")
     neg_file = open('audio/negative_sentiment.m4a', "rb")
     neg_data = neg_file.read()
     neg_file.close()
-    st.audio(neg_data, format="audio/mp4")
+    st.audio(neg_data, format="audio/mp3")
+    
+    disclaimer = '<p style="color:Grey; font-size: 10px;">(*) Please note that this is a sample recording only for demo and testing purpose.</p>'
+    st.markdown(disclaimer, unsafe_allow_html=True)
+
 
     # st.markdown(ut.file_download('positive_sentiment.m4a', 'audio/positive_sentiment.m4a' , 'Download Positive Sentiment Audio File'), unsafe_allow_html=True)
     # st.markdown(ut.file_download('neutral_sentiment.m4a', 'audio/neutral_sentiment.m4a' , 'Download Neutral Sentiment Audio File'), unsafe_allow_html=True)
@@ -63,12 +67,10 @@ bucket = storage_client.bucket("call-recordings-genai")
 if uploaded_file is not None:
     # Hide filename on UI
     st.markdown('''<style>.uploadedFile {display: none}<style>''', unsafe_allow_html=True)
-    original_title = '<p style="color:Green; font-size: 20px; font-weight: bold;">Upload complete! Visit <a style="font-weight: normal;" href="ACW_Table" target="_self">ACW Metrics</a> for ACW records.</p>'
+    original_title = '<p style="color:Green; font-size: 20px; font-weight: bold;">Successfully uploaded \'{filename}\'! After processing, the new ACW record will be available <a style="font-weight: normal;" href="ACW_Records" target="_self">here</a>.</p>'.format(filename = uploaded_file.name)
     st.markdown(original_title, unsafe_allow_html=True)
 
-    # st.markdown("""Upload complete! Visit <a href="ACW_Table" target="_self">ACW Table</a> for ACW records.""", unsafe_allow_html=True)
-    # blob = bucket.blob(uploaded_file.name)
-    # blob.upload_from_file(uploaded_file)
-    print(f"wellsfargo-poc-352817 with contents uploaded to call-recordings-genai.")
+    blob = bucket.blob(uploaded_file.name)
+    blob.upload_from_file(uploaded_file)
 
 ut.add_footer()
