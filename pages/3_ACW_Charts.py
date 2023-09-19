@@ -60,9 +60,9 @@ st.markdown("""
 # with col2:
 #     st.plotly_chart(fig_tags, use_container_width=True)
 
-chart_data = pd.DataFrame(
-    df,
-    columns=["a", "b", "c"])
+# chart_data = pd.DataFrame(
+#     df,
+#     columns=["a", "b", "c"])
 
-st.bar_chart(chart_data)
+# st.bar_chart(chart_data)
 ut.add_footer()
