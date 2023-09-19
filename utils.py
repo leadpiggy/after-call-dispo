@@ -17,7 +17,7 @@ def add_logo():
     )
 #background-image: url(https://cdn-icons-png.flaticon.com/128/2706/2706962.png?ga=GA1.1.1108328850.1694773165);
 
-def set_acw_header():
+def set_acw_header(headerstr):
     st.markdown('''
     <style>
     .stApp [data-testid="block-container"]{
@@ -33,7 +33,7 @@ def set_acw_header():
     header {visibility: hidden; display: none;}
     </style> """, unsafe_allow_html=True)
 
-    st.write("# ACW - After Call Work Portal")
+    st.write("# " + headerstr)
     st.header('', divider='rainbow')
 
     #Sidebar margin reduction
@@ -85,4 +85,4 @@ button {
 """,
     unsafe_allow_html=True,
 )
-    download1 = st.download_button(label="Export to CSV", data=csv, file_name='acw-records.csv', mime='text/csv')
+    st.download_button(label="Export to CSV", data=csv, file_name='acw-records.csv', mime='text/csv')

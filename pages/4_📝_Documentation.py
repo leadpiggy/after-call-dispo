@@ -1,18 +1,11 @@
-# Theme is set in config.toml
-from google.cloud import firestore
-from google.cloud import storage
-from io import StringIO
 import streamlit as st
-import pandas as pd
-from google.oauth2 import service_account
-import plotly.express as px
 from PIL import Image
 import utils as ut
 
 # This should be the first line of the code
 st.set_page_config(page_title='Documentation', layout='wide')
 ut.add_logo()
-ut.set_acw_header()
+ut.set_acw_header("ACW - Product Documentation")
 
 # st.expander label font change
 st.markdown("""
@@ -58,16 +51,34 @@ with heading3:
 heading4 = st.expander("The ACW Automation Process", expanded=False)#✔️☑️
 with heading4:
   st.markdown("The ACW Automation Suite executes its transformative sequence of events with precision:")
-  st.markdown("✔️ Following the conclusion of a customer call, the recording is promptly secured within a designated Cloud Storage repository.", unsafe_allow_html=True)
-  st.markdown("✔️ The Cloud Function, an automation sentinel, springs into action upon detecting the arrival of a new recording.", unsafe_allow_html=True)
-  st.markdown("✔️ This trigger activates a RESTful invocation of the ACW Control Center, hosted on Cloud Run.", unsafe_allow_html=True)
-  st.markdown("✔️ The Control Center oversees audio transcription, tapping into AssemblyAI’s transcription API. Subsequently, it employs ClarifAI’s semantic brilliance, enriched by prompt engineering, to uncover valuable insights from call recordings.", unsafe_allow_html=True)
-  st.markdown("✔️ These insights are securely stored within GCP Firestore, preserving them for reporting, dashboards, agent assist applications, and advanced agent training endeavours.", unsafe_allow_html=True)
-
+  st.markdown("✅ Following the conclusion of a customer call, the recording is promptly secured within a designated Cloud Storage repository.", unsafe_allow_html=True)
+  st.markdown("✅ The Cloud Function, an automation sentinel, springs into action upon detecting the arrival of a new recording.", unsafe_allow_html=True)
+  st.markdown("✅ This trigger activates a RESTful invocation of the ACW Control Center, hosted on Cloud Run.", unsafe_allow_html=True)
+  st.markdown("✅ The Control Center oversees audio transcription, tapping into AssemblyAI’s transcription API. Subsequently, it employs ClarifAI’s semantic brilliance, enriched by prompt engineering, to uncover valuable insights from call recordings.", unsafe_allow_html=True)
+  st.markdown("✅ These insights are securely stored within GCP Firestore, preserving them for reporting, dashboards, agent assist applications, and advanced agent training endeavours.", unsafe_allow_html=True)
+  st.markdown("This process is shown in the below sequence diagram for reference (figure 1.0 - ACW Automation - Sequence Of Events)", unsafe_allow_html=True)
+  image = Image.open('static/sequence_diagram.png')
+  st.image(image, caption='figure 1.0 - ACW Automation - Sequence Of Events')
+  # st.markdown("Here is the overall architecture diagram for this application:")
+  st.markdown("<h6 style='text-align: left;'>Here is the overall architecture diagram for this application:</h6>", unsafe_allow_html=True)
+  image = Image.open('static/arch-diag.jpeg')
+  st.image(image, caption='figure 1.1 - ACW - System Architecture')
+  st.markdown("This suite consists of two main components:")
+  st.markdown("✅ UI Layer - Developed using Streamlit and hosted on Streamlit cloud.", unsafe_allow_html=True)
+  st.markdown("✅ Backend Layer - This layer consists of Cloud function and ACW Orchestrator.", unsafe_allow_html=True)
+  st.markdown("- The Cloud function detects a new object upload event on GCP cloud storage. And then triggers REST API of Orchestrator running on Cloud Run.", unsafe_allow_html=True)
+  st.markdown("- The Orchestrator executes series of tasks in series through pipeline designed in Springboot application and hosted on Cloud run by dockerising the Springboot application. ACW Orchestrator talks to AssemblyAI for call recording Transcription. Then uses ClarifAI’s API (internally uses Google Vertex AI - Text-Bison model) for transcription analysis on call recording.", unsafe_allow_html=True)
+  st.markdown("- Finally, the sequence of pipeline tasks ends by inserting this key information to Cloud Firestone for further analysis.", unsafe_allow_html=True)
+  st.markdown('''
+<style>
+[data-testid="stMarkdownContainer"] ul{
+    list-style-position: inside;
+    list-style-type: square;
+}
+[data-testid="stMarkdownContainer"] p{
+    margin: 0px 0px 0px;
+}
+</style>
+''', unsafe_allow_html=True)
+  
 ut.add_footer()
-
-
-
-#st.markdown("<br/><h6 style='text-align: left;'>Automation Empowerment:</h6>By automating ACW tasks, the ACW Automation Suite liberates agents from the onerous burdens of note-taking and manual data entry into CRM applications. This automation fosters a singular focus on resolving customer inquiries.", unsafe_allow_html=True)
-
-#st.markdown("""Using this portal, you can test the ACW automation (<a href="Upload_File" target="_self">ACW Playground</a>), view ACW records (<a href="ACW_Table" target="_self">ACW Records</a>) and ACW based contact center metrics (<a href="ACW_Charts" target="_self">ACW Charts</a>).""", unsafe_allow_html=True)

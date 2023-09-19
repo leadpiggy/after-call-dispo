@@ -8,7 +8,7 @@ import plotly.express as px
 
 st.set_page_config(page_title='ACW Charts', layout='wide')
 ut.add_logo()
-ut.set_acw_header()
+ut.set_acw_header("ACW - Charts and Metrics")
 
 credentials = service_account.Credentials.from_service_account_info(
     st.secrets["secrets-gcp"]
@@ -33,7 +33,7 @@ df.index.name = 'Sr No.'
 
 fig_sentiment = px.pie(df, names='Sentiment',
                  title=f'ACW by Caller Sentiment',
-                 height=300, width=200, color_discrete_sequence=px.colors.sequential.Oryel)
+                 height=300, width=200, color_discrete_sequence=px.colors.sequential.Bluered)
 fig_sentiment.update_layout(margin=dict(l=20, r=20, t=30, b=0),)
 
 fig_intent = px.pie(df, names='Intent',
@@ -48,9 +48,11 @@ with col1:
 with col2:
     st.plotly_chart(fig_intent, use_container_width=True)
 
-st.markdown("""
-    <br/><br/>
-    """, unsafe_allow_html=True)
+disclaimer = '<p style="color:Grey; font-size: 12px;">(Hover over charts to see the data pertinent to legends given on the right)</p>'
+st.markdown(disclaimer, unsafe_allow_html=True)
+# st.markdown("""
+#     <br/><br/>
+#     """, unsafe_allow_html=True)
 
 # fig_tags = px.pie(df, names='Sentiment',
 #                  title=f'ACW by tags',

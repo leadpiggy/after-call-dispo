@@ -3,13 +3,10 @@ import utils as ut
 from google.cloud import firestore
 from google.oauth2 import service_account
 import pandas as pd
-from PIL import Image
-
-
 
 st.set_page_config(page_title='ACW Records', layout='wide')
 ut.add_logo()
-ut.set_acw_header()
+ut.set_acw_header("ACW - Records")
 
 credentials = service_account.Credentials.from_service_account_info(
     st.secrets["secrets-gcp"]
@@ -29,8 +26,12 @@ with st.spinner(text="Getting ACW data..."):
     css = r'''
     <style>
         [data-testid="baseButton-secondary"] {
-            border-style: solid
+            border-style: solid;
             }
+        .css-7ym5gk:hover {
+            border-color: black;
+            color: black;
+        }
     </style>
     '''
     st.markdown(css, unsafe_allow_html=True)

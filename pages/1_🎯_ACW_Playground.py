@@ -1,20 +1,20 @@
-from io import BytesIO
 import streamlit as st
 import utils as ut
 from google.cloud import storage
 from google.oauth2 import service_account
 
-
-# st.set_page_config(page_title="ACW Playground")
 st.set_page_config(page_title='ACW Playground', layout='wide')
 ut.add_logo()
-ut.set_acw_header()
+ut.set_acw_header("ACW - Playground")
 
 # st.expander label font change
 st.markdown("""
   <style>
     div[data-testid="stExpander"] div[role="button"] p {
     font-size: 20px;
+    }
+    .st-c8:hover {
+    color: #3371FF !important;
     }
   </style>
 """, unsafe_allow_html=True)
