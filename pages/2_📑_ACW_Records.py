@@ -62,7 +62,9 @@ with st.spinner(text="Getting ACW data..."):
     
     st.dataframe(df, use_container_width=True)
     
-    col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns([1,1,1,1,1,1,1,1,7,3])
+    col1, col2, col3, col4, col5, col6, col7, col8, col9, col10 = st.columns([3,1,1,1,1,1,1,1,5,3])
     with col10:
         ut.export_to_csv(df)
-ut.add_footer()
+    with col1:
+        st.markdown("""<a href="Home" target="_self">< Home</a>""", unsafe_allow_html=True)
+# ut.add_footer()
